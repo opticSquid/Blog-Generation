@@ -8,7 +8,7 @@ from langchain_community.llms import CTransformers
 def getLLamaResponse(input_text, no_words, blog_style):
     # LLama 2 model
     llm = CTransformers(
-        model='models/llama-2-7b-chat.Q8_0.gguf', model_type='llama',
+        model='models/llama-2-7b-chat.Q3_K_S.gguf', model_type='llama',
         config={'max_new_tokens': 256, 'temperature': 0.01})
 
     # Prompt template
@@ -21,7 +21,6 @@ def getLLamaResponse(input_text, no_words, blog_style):
     # Generate response from Llama GGUF model
     response = llm(prompt.format(style=blog_style,
                    text=input_text, n_words=no_words))
-    print(response)
     return response
 
 
@@ -35,7 +34,7 @@ with col1:
     no_words = st.text_input("Number of words: ")
 with col2:
     blog_style = st.selectbox(
-        "Writing the blog for", ('Researchers', 'DataScientist', 'Common People'), index=0)
+        "Writing the blog for", ('Researchers', 'Data scientist', 'Common people'), index=0)
 submit = st.button("Generate")
 if submit:
     st.write(getLLamaResponse(input_text, no_words, blog_style))

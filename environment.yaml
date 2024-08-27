@@ -1,0 +1,13 @@
+name: blog-generation
+channels:
+  - conda-forge
+dependencies:
+  - sentence-transformers
+  - uvicorn
+  - ctransformers
+  - langchain
+  - langchain_community
+  - python-box
+  - streamlit
+  # - pip:
+    # - -r file:requirements.txt
